@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UpdateActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@drawable/lavender_border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update hike"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                android:textColor="@color/lavender"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/updateHikeName"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="30dp"
+                android:hint="Enter hike name"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/updateHikeLocation"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="30dp"
+                android:hint="Enter hike location"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"/>
+            <EditText
+                android:id="@+id/updateHikeDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="30dp"
+                android:hint="Enter hike date"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"
+                android:inputType="none"
+                android:focusable="false"
+                android:clickable="true" />
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parking available:"
+                    android:textSize="20dp"
+                    android:paddingLeft="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="10dp"
+                    ></TextView>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/parkingStatus"
+                    android:orientation="horizontal">
+                    <RadioButton android:id="@+id/parkingAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="10dp"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="Yes"/>
+                    <RadioButton android:id="@+id/noParkingAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hiking length:"
+                    android:textSize="20dp"
+                    android:paddingLeft="5dp"
+                    android:paddingEnd="38dp"
+                    >
+                </TextView>
+                <EditText
+                    android:id="@+id/updateHikeLength"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/lavender_border"
+                    android:gravity="start|center_vertical"
+                    android:hint="Hike length"
+                    android:paddingLeft="30dp"
+                    android:textColor="@color/lavender" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hiking difficulty:"
+                    android:textSize="20dp"
+                    android:paddingLeft="5dp"
+                    android:paddingEnd="18dp"
+                    >
+                </TextView>
+                <Spinner
+                    android:id="@+id/updateHikeLevel"
+                    android:layout_width="148dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/lavender_border"
+                    android:entries="@array/hikingLevel"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/updateHikeDesc"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="30dp"
+                android:hint="Enter description"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Save"
+                android:id="@+id/updateButton"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                app:cornerRadius = "20dp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</ScrollView>

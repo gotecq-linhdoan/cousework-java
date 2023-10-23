@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "419562941764",
+    "project_id": "coursework-java",
+    "storage_bucket": "coursework-java.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419562941764:android:bcf2760197e32ebc283b11",
+        "android_client_info": {
+          "package_name": "com.example.coursework_java"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATYnNatADQ7Ejd3SxfFWMUgR2eoe3WXpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

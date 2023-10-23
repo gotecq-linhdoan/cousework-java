@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">coursework-java</string>
+    <string-array name="hikingLevel">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+</resources>
