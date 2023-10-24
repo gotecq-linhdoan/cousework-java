@@ -1,9 +1,12 @@
 package com.example.coursework_java;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -77,11 +80,22 @@ public class MainActivity extends AppCompatActivity {
         deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
-                dbHelper.deleteAllHikes();
-                hikeList.clear();
-                adapter.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this, "All hikes have been deleted.", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Delete all hike")
+                    .setMessage("Are you sure you want to delete all hike record?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
+                            dbHelper.deleteAllHikes();
+                            hikeList.clear();
+                            adapter.notifyDataSetChanged();
+                            Toast.makeText(MainActivity.this, "All hikes have been deleted.", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
             }
         });
 

@@ -4,6 +4,7 @@ public class Observation {
     private String name;
     private String desc;
     private String imageUrl;
+    private String time;
 
     public String getName() {
         return name;
@@ -16,10 +17,12 @@ public class Observation {
     public String getImageUrl() {
         return imageUrl;
     }
+    public String getTime() { return time; }
 
-    public Observation(String name, String desc, String imageUrl) {
+    public Observation(String name, String desc, String time, String imageUrl) {
         this.name = name;
         this.desc = desc;
+        this.time = time;
         this.imageUrl = imageUrl;
     }
 }
