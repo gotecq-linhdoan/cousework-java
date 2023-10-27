@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class UpdateActivity extends AppCompatActivity {
     Button updateButton;
+    TextView backAction;
     EditText hikeName, hikeLength, hikeDesc, hikeLocation, hikeDate;
     Spinner hikeSpinner;
     String hikeLevel;
@@ -39,6 +41,7 @@ public class UpdateActivity extends AppCompatActivity {
         hikeDate = findViewById(R.id.updateHikeDate);
         hikeSpinner = findViewById(R.id.updateHikeLevel);
         parkingStatus = findViewById(R.id.parkingStatus);
+        backAction = findViewById(R.id.updateToHome);
 
         hikeDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +54,7 @@ public class UpdateActivity extends AppCompatActivity {
         if(bundle != null) {
             hikeName.setText(bundle.getString("Name"));
             hikeLength.setText(bundle.getString("Length").split(": ")[1].replace("m", ""));
-            hikeDesc.setText(bundle.getString("Description"));
+            hikeDesc.setText(bundle.getString("Description").split(": ")[1]);
             hikeLocation.setText(bundle.getString("Location").split(": ")[1]);
             hikeDate.setText(bundle.getString("Date").split(": ")[1]);
 
@@ -96,6 +99,14 @@ public class UpdateActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 updateHike();
+            }
+        });
+
+        backAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -143,7 +154,7 @@ public class UpdateActivity extends AppCompatActivity {
         String date = hikeDate.getText().toString();
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        dbHelper.updateHike(key, name, desc, location, date, length, hasParking, hikeLevel);
+        dbHelper.updateHike(key, name, date, desc, location, length, hasParking, hikeLevel);
 
         Toast.makeText(UpdateActivity.this, "Updated", Toast.LENGTH_SHORT).show();
         // Return to the MainActivity or perform any other desired actions

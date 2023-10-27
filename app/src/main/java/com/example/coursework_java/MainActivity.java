@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -50,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         hikeList = new ArrayList<>();
         dbHelper = new DatabaseHelper(this);
-
         adapter = new HikeAdapter(MainActivity.this, hikeList);
+        loadHikesFromSQLite();
         recyclerView.setAdapter(adapter);
 
-        loadHikesFromSQLite();
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -98,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     public void searchList(String text) {
@@ -116,17 +115,17 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.query(
-                DatabaseHelper.TABLE_HIKES, null, null, null, null, null, null);
+                DatabaseHelper.TABLE_HIKE, null, null, null, null, null, null);
 
         if (cursor != null && cursor.moveToFirst()) {
-            int nameColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME);
-            int descColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_DESC);
-            int locationColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_LOCATION);
-            int dateColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_DATE);
-            int lengthColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_LENGTH);
-            int levelColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_LEVEL);
-            int hasParkingColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_HAS_PARKING);
-            int hasIdColumnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
+            int nameColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_NAME);
+            int descColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_DESCRIPTION);
+            int locationColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_LOCATION);
+            int dateColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_DATE);
+            int lengthColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_LENGTH);
+            int levelColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_LEVEL);
+            int hasParkingColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_HAS_PARKING);
+            int hasIdColumnIndex = cursor.getColumnIndex(DatabaseHelper.HIKE_ID);
 
             do {
                 String name = cursor.getString(nameColumnIndex);

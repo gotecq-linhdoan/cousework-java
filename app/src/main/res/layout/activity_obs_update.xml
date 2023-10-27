@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UploadActivity">
+    tools:context=".ObsUpdateActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
-                android:id="@+id/uploadToDetail"
+                android:id="@+id/updateToDetail"
                 android:layout_marginBottom="12dp"
                 android:layout_weight="1"
                 android:focusable="false"
@@ -46,53 +46,53 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Observation"
+                android:text="Edit Observation"
                 android:textSize="30sp"
                 android:layout_weight="1"
                 android:textColor="@color/lavender"/>
-
         </LinearLayout>
+
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:src="@drawable/uploading"
-                android:id="@+id/obsImage"
+                android:id="@+id/updateObsImage"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/obsName"
+                android:id="@+id/updateObsName"
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="30dp"
+                android:padding="16dp"
                 android:hint="Enter observation name"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
 
             <EditText
-                android:id="@+id/obsTime"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/updateObsTime"
                 android:background="@drawable/lavender_border"
-                android:clickable="true"
-                android:focusable="false"
-                android:gravity="start|center_vertical"
-                android:hint="Enter observation time"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
                 android:inputType="none"
-                android:paddingLeft="30dp"
-                android:textColor="@color/lavender" />
+                android:focusable="false"
+                android:clickable="true"
+                android:hint="Enter observation time"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:id="@+id/obsDesc"
+                android:id="@+id/updateObsDesc"
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="30dp"
+                android:padding="16dp"
                 android:hint="Enter observation description"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
@@ -100,8 +100,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Save"
-                android:id="@+id/saveButton"
+                android:text="Update"
+                android:id="@+id/updateObsButton"
                 android:textSize="18sp"
                 android:layout_marginTop="20dp"
                 app:cornerRadius = "20dp"/>

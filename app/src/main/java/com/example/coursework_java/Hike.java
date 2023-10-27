@@ -11,7 +11,7 @@ public class Hike {
     private String hikeLevel;
     private String hikeLength;
     private int hasParking;
-    private List<Observation> observations;
+    private List<Observation> observationList;
     private int key;
 
     public int getKey() {
@@ -20,10 +20,6 @@ public class Hike {
 
     public void setKey(int key) {
         this.key = key;
-    }
-
-    public void addObservation(Observation observation) {
-        observations.add(observation);
     }
 
     public String getHikeName() {
@@ -54,8 +50,12 @@ public class Hike {
         return hasParking;
     }
 
-    public List<Observation> getObservations() {
-        return observations;
+    public List<Observation> getObservationList() {
+        return observationList;
+    }
+
+    public void addObservation(Observation observation) {
+        observationList.add(observation);
     }
 
     public Hike(String hikeName, String hikeLocation, String hikeDesc, String hikeDate, String hikeLevel, String hikeLength, int hasParking) {
@@ -66,7 +66,7 @@ public class Hike {
         this.hikeLevel = hikeLevel;
         this.hikeLength = hikeLength;
         this.hasParking = hasParking;
-        this.observations = new ArrayList<>();
+        this.observationList = new ArrayList<>(); // Initialize the observation list
     }
 
     public Hike() {

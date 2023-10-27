@@ -41,22 +41,10 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("Description", hikeList.get(holder.getAdapterPosition()).getHikeDesc());
-                intent.putExtra("Name", hikeList.get(holder.getAdapterPosition()).getHikeName());
-                intent.putExtra("Level", hikeList.get(holder.getAdapterPosition()).getHikeLevel());
-                intent.putExtra("Length", hikeList.get(holder.getAdapterPosition()).getHikeLength());
-                intent.putExtra("Date", hikeList.get(holder.getAdapterPosition()).getHikeDate());
-                intent.putExtra("Location", hikeList.get(holder.getAdapterPosition()).getHikeLocation());
-                intent.putExtra("Parking", hikeList.get(holder.getAdapterPosition()).getHasParking());
                 intent.putExtra("Key", hikeList.get(holder.getAdapterPosition()).getKey());
-
                 context.startActivity(intent);
             }
         });
-    }
-
-    public void clear() {
-        clear();
     }
 
     @Override

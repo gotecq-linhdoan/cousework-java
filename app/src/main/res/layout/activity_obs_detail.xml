@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailActivity">
+    tools:context=".ObsDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="18dp"
             android:paddingLeft="10dp"
-            android:id="@+id/backToHome"
+            android:id="@+id/backToDetail"
             android:layout_marginBottom="12dp"
             android:layout_weight="1"
             android:focusable="false"
@@ -28,28 +28,35 @@
             android:text="Back"
             android:textSize="17sp" />
         <TextView
-            android:id="@+id/hikeNameDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/obsDetailName"
             android:text="Name"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
             android:layout_marginTop="14dp"
-            android:textColor="@color/lavender"
+            android:textSize="24sp"
+            android:layout_weight="4"
+            android:layout_gravity="center"
             android:layout_marginBottom="12dp"
-            android:layout_weight="4" />
+            android:textColor="@color/lavender"/>
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:id="@+id/obsDetailImage"
+        android:padding="8dp"
+        android:layout_gravity="center"
+        android:src="@drawable/uploading"
+        android:scaleType="fitXY"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:text="Location"
+        android:padding="20dp"
+        android:text="Time"
         android:layout_gravity="center"
-        android:id="@+id/hikeDetailLocation"
+        android:id="@+id/obsDetailTime"
         android:textSize="18sp"
         android:textColor="@color/lavender"/>
 
@@ -57,83 +64,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:text="Date of the Hike"
-        android:layout_gravity="center"
-        android:id="@+id/hikeDateDetail"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:text="Parking available"
-        android:layout_gravity="center"
-        android:id="@+id/hikeParkingDetail"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:text="300 meter"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:id="@+id/hikeLengthDetail"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:text="Hard"
-        android:layout_gravity="center"
-        android:id="@+id/hikeLevelDetail"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
+        android:padding="20dp"
         android:text="Description"
-        android:textStyle="bold"
         android:layout_gravity="center"
-        android:id="@+id/hikeDescDetail"
+        android:id="@+id/obsDetailDes"
         android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/obsListTxt"
-        android:text="Observation List"
-        android:layout_marginTop="14dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
         android:textColor="@color/lavender"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_below="@id/hikeDescDetail"
         android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerObsView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:scrollbars="vertical" />
+
         <com.github.clans.fab.FloatingActionMenu
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,19 +88,11 @@
             app:menu_icon="@drawable/baseline_format_list_bulleted_24"
             app:menu_openDirection="up"
             app:menu_showShadow="true">
-            <com.github.clans.fab.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/addObsButton"
-                android:src="@drawable/baseline_add_24"
-                app:fab_showShadow="true"
-                app:fab_colorNormal="@color/black"
-                app:fab_size="mini"/>
 
             <com.github.clans.fab.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editButton"
+                android:id="@+id/editObsButton"
                 android:src="@drawable/baseline_edit_24"
                 app:fab_showShadow="true"
                 app:fab_colorNormal="@color/green"
@@ -168,7 +101,7 @@
             <com.github.clans.fab.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/deleteButton"
+                android:id="@+id/deleteObsButton"
                 android:src="@drawable/baseline_delete_24"
                 app:fab_showShadow="true"
                 app:fab_colorNormal="@color/red"

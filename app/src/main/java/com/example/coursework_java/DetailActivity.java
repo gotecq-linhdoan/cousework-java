@@ -1,21 +1,35 @@
 package com.example.coursework_java;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView detailName, detailLocation,  detailDesc, detailDate, detailLength, detailLevel, detailHasParking;
-    FloatingActionButton deleteButton, editButton;
+    TextView detailName, detailLocation,  detailDesc, detailDate, detailLength, detailLevel, detailHasParking, backAction;
+    FloatingActionButton deleteButton, editButton, addObsButton;
+    List<Observation> observationList;
+    Hike hike;
+    RecyclerView recyclerView;
+    ObservationAdapter observationAdapter;
     int key, hasParking;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,25 +45,47 @@ public class DetailActivity extends AppCompatActivity {
         detailHasParking = findViewById(R.id.hikeParkingDetail);
         deleteButton = findViewById(R.id.deleteButton);
         editButton = findViewById(R.id.editButton);
+        addObsButton = findViewById(R.id.addObsButton);
+        recyclerView = findViewById(R.id.recyclerObsView);
+        backAction = findViewById(R.id.backToHome);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(DetailActivity.this, 1);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        observationList = new ArrayList<>();
 
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
-            detailName.setText(bundle.getString("Name"));
-            detailLocation.setText("Location: " + bundle.getString("Location"));
-            detailDesc.setText(bundle.getString("Description"));
-            detailDate.setText("Date of the Hike: " + bundle.getString("Date"));
-            detailLength.setText("Hike Length: " + bundle.getString("Length") + "m");
-            detailLevel.setText("Hike level: " + bundle.getString("Level"));
-            hasParking = getIntent().getIntExtra("Parking", 0);
-            detailHasParking.setText("Parking Status: " + (hasParking == 1 ? "Available" : "Not Available"));
             key = getIntent().getIntExtra("Key", 0);
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
+            hike = dbHelper.getHike(key);
+            observationList = dbHelper.getObservationsForHike(key);
+            detailName.setText(hike.getHikeName());
+            detailLocation.setText("Location: " + hike.getHikeLocation());
+            detailDesc.setText("Description: " + hike.getHikeDesc());
+            detailDate.setText("Date of the Hike: " + hike.getHikeDate());
+            detailLength.setText("Hike Length: " + hike.getHikeLength() + "m");
+            detailLevel.setText("Hike level: " + hike.getHikeLevel());
+            hasParking = hike.getHasParking();
+            detailHasParking.setText("Parking Status: " + (hasParking == 1 ? "Available" : "Not Available"));
         }
+
+        observationAdapter = new ObservationAdapter(DetailActivity.this, observationList);
+        recyclerView.setAdapter(observationAdapter);
+        observationAdapter.notifyDataSetChanged();
+
+        backAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SQLiteDatabase database = new DatabaseHelper(DetailActivity.this).getWritableDatabase();
-                String deleteQuery = "DELETE FROM " + DatabaseHelper.TABLE_HIKES + " WHERE " + DatabaseHelper.COLUMN_ID + " = ?";
+                String deleteQuery = "DELETE FROM " + DatabaseHelper.TABLE_HIKE + " WHERE " + DatabaseHelper.HIKE_ID + " = ?";
 
                 // Execute the DELETE query with the specific hike ID
                 database.execSQL(deleteQuery, new Object[]{key});
@@ -72,6 +108,14 @@ public class DetailActivity extends AppCompatActivity {
                         .putExtra("Length", detailLength.getText().toString())
                         .putExtra("Level", detailLevel.getText().toString())
                         .putExtra("Parking", hasParking)
+                        .putExtra("Key", key);
+                startActivity(intent);
+            }
+        });
+        addObsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, ObsUploadActivity.class)
                         .putExtra("Key", key);
                 startActivity(intent);
             }
