@@ -98,15 +98,39 @@ public class ObsUploadActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ObsUploadActivity.this);
-                builder.setCancelable(false);
-                builder.setView(R.layout.progress_layout);
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                UploadObservation();
+                if (validateFields()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ObsUploadActivity.this);
+                    builder.setCancelable(false);
+                    builder.setView(R.layout.progress_layout);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    UploadObservation();
+                }
             }
         });
     }
+
+    private boolean validateFields() {
+        String name = obsName.getText().toString();
+        String time = obsTime.getText().toString();
+
+        if (name.isEmpty()) {
+            obsName.setError("Name is required");
+            obsName.requestFocus();
+            return false;
+        }
+
+        if (time.isEmpty()) {
+            obsTime.setError("Time is required");
+            obsTime.requestFocus();
+            return false;
+        }
+
+        // Additional validation can be added here if needed
+
+        return true;
+    }
+
     public void UploadObservation() {
         String name = obsName.getText().toString();
         String desc = obsDesc.getText().toString();

@@ -65,15 +65,16 @@ public class UploadActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(UploadActivity.this);
-                builder.setCancelable(false);
-                builder.setView(R.layout.progress_layout);
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                uploadData();
+                if (validateFields()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UploadActivity.this);
+                    builder.setCancelable(false);
+                    builder.setView(R.layout.progress_layout);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    uploadData();
+                }
             }
         });
-
         backAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +117,49 @@ public class UploadActivity extends AppCompatActivity {
             }
         }
     }
+
+    private boolean validateFields() {
+        String name = hikeName.getText().toString();
+        String location = hikeLocation.getText().toString();
+        String date = hikeDate.getText().toString();
+
+        if (name.isEmpty()) {
+            hikeName.setError("Name is required");
+            hikeName.requestFocus();
+            return false;
+        }
+
+        if (location.isEmpty()) {
+            hikeLocation.setError("Location is required");
+            hikeLocation.requestFocus();
+            return false;
+        }
+
+        if (date.isEmpty()) {
+            hikeDate.setError("Date is required");
+            hikeDate.requestFocus();
+            return false;
+        }
+
+        if (hikeLevel == null || hikeLevel.isEmpty()) {
+            // You may also want to display an error message for the level field.
+            return false;
+        }
+
+        if (hasParking != 0 && hasParking != 1) {
+            // You may want to display an error message for the parking field.
+            return false;
+        }
+
+        String length = hikeLength.getText().toString();
+        if (length.isEmpty()) {
+            hikeLength.setError("Length is required");
+            hikeLength.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
     public void uploadData () {
         String name = hikeName.getText().toString();
         String desc = hikeDesc.getText().toString();
@@ -149,4 +193,6 @@ public class UploadActivity extends AppCompatActivity {
 
         finish();
     }
+
+
 }

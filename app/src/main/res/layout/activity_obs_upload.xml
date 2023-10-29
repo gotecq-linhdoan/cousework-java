@@ -68,7 +68,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
-                android:hint="Enter observation name"
+                android:hint="Enter observation name (required)"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
 
@@ -81,7 +81,7 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:gravity="start|center_vertical"
-                android:hint="Enter observation time"
+                android:hint="Enter observation time (required)"
                 android:inputType="none"
                 android:paddingLeft="30dp"
                 android:textColor="@color/lavender" />

@@ -110,12 +110,14 @@ public class ObsUpdateActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ObsUpdateActivity.this);
-                builder.setCancelable(false);
-                builder.setView(R.layout.progress_layout);
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                UpdateObservation();
+                if(validateFields()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ObsUpdateActivity.this);
+                    builder.setCancelable(false);
+                    builder.setView(R.layout.progress_layout);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    UpdateObservation();
+                }
             }
         });
     }
@@ -126,6 +128,26 @@ public class ObsUpdateActivity extends AppCompatActivity {
         return null;
     }
 
+    private boolean validateFields() {
+        String name = obsName.getText().toString();
+        String time = obsTime.getText().toString();
+
+        if (name.isEmpty()) {
+            obsName.setError("Name is required");
+            obsName.requestFocus();
+            return false;
+        }
+
+        if (time.isEmpty()) {
+            obsTime.setError("Time is required");
+            obsTime.requestFocus();
+            return false;
+        }
+
+        // Additional validation can be added here if needed
+
+        return true;
+    }
     public void UpdateObservation() {
         String name = obsName.getText().toString();
         String desc = obsDesc.getText().toString();

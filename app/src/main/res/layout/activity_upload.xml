@@ -52,7 +52,6 @@
                 android:textColor="@color/lavender"/>
         </LinearLayout>
 
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -60,7 +59,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
-                android:hint="Enter hike name"
+                android:hint="Enter hike name (required)"
                 android:clickable="true"
                 android:onClick="onClick"
                 android:gravity="start|center_vertical"
@@ -72,7 +71,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
-                android:hint="Enter hike location"
+                android:hint="Enter hike location (required)"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
             <EditText
@@ -82,7 +81,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
-                android:hint="Enter hike date"
+                android:hint="Enter hike date (required)"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"
                 android:inputType="none"
@@ -106,6 +105,7 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/parkingAvailable"
                     android:orientation="horizontal">
                     <RadioButton android:id="@+id/parkingAvailable"
                         android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/lavender_border"
                     android:gravity="start|center_vertical"
-                    android:hint="Hike length"
+                    android:hint="(required)"
                     android:paddingLeft="30dp"
                     android:textColor="@color/lavender" />
 
@@ -175,7 +175,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
-                android:hint="Enter description"
+                android:hint="Enter description (optional)"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
 
